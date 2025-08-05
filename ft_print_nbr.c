@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_nbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/02 05:05:58 by ranhaia-          #+#    #+#             */
-/*   Updated: 2025/08/04 20:42:33 by ranhaia-         ###   ########.fr       */
+/*   Created: 2025/08/04 15:04:27 by ranhaia-          #+#    #+#             */
+/*   Updated: 2025/08/04 20:45:15 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include "libft/libft.h"
+int	ft_putnbr(int n)
+{
+	long int	nb;
+	char		str[12];
+	int			i;
+	int			count;
 
-int	ft_printf(const char *str, ...);
-int	ft_putnbr(int n);
-int	ft_putchar(char c);
-int	ft_putstr(char *str);
-int	ft_putunbr(unsigned int num);
-int	ft_puthex(unsigned long long num, char flag);
-int	ft_putptr(unsigned long long num);
-
-#endif
+	nb = n;
+	count = 0;
+	if (nb == 0)
+		count += ft_putchar('0');
+	if (nb < 0)
+	{
+		count += ft_putchar('-');
+		nb = -nb;
+	}
+	i = 0;
+	while (nb > 0)
+	{
+		str[i++] = nb % 10 + '0';
+		nb /= 10;
+	}
+	while (i > 0)
+		count += ft_putchar(str[--i]);
+	return (count);
+}

@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/02 05:05:58 by ranhaia-          #+#    #+#             */
-/*   Updated: 2025/08/04 20:42:33 by ranhaia-         ###   ########.fr       */
+/*   Created: 2025/08/04 15:00:47 by ranhaia-          #+#    #+#             */
+/*   Updated: 2025/08/04 20:58:34 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include "libft/libft.h"
+int	ft_putstr(char *str)
+{
+	int	i;
 
-int	ft_printf(const char *str, ...);
-int	ft_putnbr(int n);
-int	ft_putchar(char c);
-int	ft_putstr(char *str);
-int	ft_putunbr(unsigned int num);
-int	ft_puthex(unsigned long long num, char flag);
-int	ft_putptr(unsigned long long num);
-
-#endif
+	i = 0;
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (str[i])
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+	return (i);
+}

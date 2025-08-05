@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/02 05:05:58 by ranhaia-          #+#    #+#             */
-/*   Updated: 2025/08/04 20:42:33 by ranhaia-         ###   ########.fr       */
+/*   Created: 2025/08/04 16:40:08 by ranhaia-          #+#    #+#             */
+/*   Updated: 2025/08/04 21:00:46 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include "libft/libft.h"
+// tratar a put ptr como void *ptr
+// criar uma
+int	ft_putptr(unsigned long long num)
+{
+	int	count;
 
-int	ft_printf(const char *str, ...);
-int	ft_putnbr(int n);
-int	ft_putchar(char c);
-int	ft_putstr(char *str);
-int	ft_putunbr(unsigned int num);
-int	ft_puthex(unsigned long long num, char flag);
-int	ft_putptr(unsigned long long num);
-
-#endif
+	count = 0;
+	count += ft_putstr("0x");
+	count += ft_puthex(num, 'x');
+	return (count);
+}
