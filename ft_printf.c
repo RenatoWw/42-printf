@@ -6,31 +6,35 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 04:28:10 by ranhaia-          #+#    #+#             */
-/*   Updated: 2025/08/04 21:26:46 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:43:17 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/* %c
- * %s
- * %p
- * %d
- * %i
- * %u
- * %x
- * %X
- * %%
-*/
+static int	check_conversion(char chr, va_list args)
+{
+	int	count;
 
-// static char	check_conversion(char c)
-// {
-// 	if (c == 'c')
-// 		printf("caractere");
-// }
-
-// arrumar puthex
-// tratar a put ptr como void *ptr
+	count = 0;
+	if (chr == 'c')
+		count += ft_putchar(va_arg(args, int));
+	if (chr == 's')
+		count += ft_putstr(va_arg(args, char *));
+	if (chr == 'p')
+		count += ft_putptr(va_arg(args, unsigned long));
+	if (chr == 'd' || chr == 'i')
+		count += ft_putnbr(va_arg(args, int));
+	if (chr == 'u')
+		count += ft_putunbr(va_arg(args, unsigned int));
+	if (chr == 'x')
+		count += ft_puthex(va_arg(args, unsigned int), 'x');
+	if (chr == 'X')
+		count += ft_puthex(va_arg(args, unsigned int), 'X');
+	if (chr == '%')
+		count += ft_putchar('%');
+	return (count);
+}
 
 int	ft_printf(const char *str, ...)
 {
@@ -43,54 +47,10 @@ int	ft_printf(const char *str, ...)
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] != '%')
-		{
-			count += ft_putchar(str[i]);
-		}
+		if (str[i] == '%' && str[i + 1] != '\0')
+			count += check_conversion(str[++i], args);
 		else
-		{
-			if (str[i] == '%' && str[i + 1] == 'c')
-			{
-				count += ft_putchar(va_arg(args, int));
-				i++;
-			}
-			if (str[i] == '%' && str[i + 1] == 's')
-			{
-				count += ft_putstr(va_arg(args, char *));
-				i++;
-			}
-			if (str[i] == '%' && str[i + 1] == 'p')
-			{
-				count += ft_putptr(va_arg(args, unsigned long long));
-				i++;
-			}
-			if (str[i] == '%' && (str[i + 1] == 'd' || str[i + 1] == 'i'))
-			{
-				count += ft_putnbr(va_arg(args, int));
-				i++;
-			}
-			if (str[i] == '%' && str[i + 1] == 'u')
-			{
-				count += ft_putunbr(va_arg(args, unsigned int));
-				i++;
-			}
-			if (str[i] == '%' && str[i + 1] == 'x')
-			{
-				count += ft_puthex(va_arg(args, unsigned long long), 'x');
-				i++;
-			}
-			if (str[i] == '%' && str[i + 1] == 'X')
-			{
-				count += ft_puthex(va_arg(args, unsigned long long), 'X');
-				i++;
-			}
-			if (str[i] == '%' && str[i + 1] == '%')
-			{
-				count += ft_putchar('%');
-				i++;
-			}
-		}
-		
+			count += ft_putchar(str[i]);
 		i++;
 	}
 	va_end(args);
@@ -101,11 +61,11 @@ int	ft_printf(const char *str, ...)
 // {
 // 	unsigned int	num;
 // 	void			*p;
+// 	char *s2 = "Atirei o pau no gatis, per gatis num morreus.";
 
 // 	p = &num;
 // 	num = 4244334;
-// 	// printf("\nlen: %d\n", printf("%cello my name is renato", 'h'));
-// 	// ft_printf("\nlen: %d\n", ft_printf("%cello my name is renato", 'h'));
-// 	ft_printf(" NULL %s NULL ", NULL);
+// 	printf("%d\n", ft_printf("|%s|%s|%s|%s|%s\n", " - ", "", "4", "", s2));
+// 	printf("%d\n", printf("|%s|%s|%s|%s|%s\n", " - ", "", "4", "", s2));
 // 	return (0);
 // }

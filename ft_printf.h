@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 05:05:58 by ranhaia-          #+#    #+#             */
-/*   Updated: 2025/08/04 20:42:33 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2025/08/06 13:36:04 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 # include <stdio.h>
 # include <unistd.h>
 # include "libft/libft.h"
+# include <limits.h>
 
 int	ft_printf(const char *str, ...);
 int	ft_putnbr(int n);
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
 int	ft_putunbr(unsigned int num);
-int	ft_puthex(unsigned long long num, char flag);
-int	ft_putptr(unsigned long long num);
+int	ft_puthex(unsigned long num, char flag);
+int	ft_putptr(unsigned long num);
 
 #endif

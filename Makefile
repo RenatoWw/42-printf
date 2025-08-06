@@ -23,11 +23,11 @@ $(NAME): $(OBJS)
 clean:
 	$(MAKE) -C $(LIBFT_PATH) clean
 	rm -f $(OBJS)
-	rm -f $(NAME)
 
 fclean: clean
-	$(MAKE) -C $(LIBFT_PATH) clean
+	$(MAKE) -C $(LIBFT_PATH) fclean
 	rm -f $(OBJS)
+	rm -f $(NAME)
 
 re: fclean all
 
