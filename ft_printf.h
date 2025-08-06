@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 05:05:58 by ranhaia-          #+#    #+#             */
-/*   Updated: 2025/08/06 13:36:04 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:34:53 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 # define FT_PRINTF_H
 
 # include <stdlib.h>
-# include <stdio.h>
+# include <stdarg.h>
 # include <unistd.h>
 # include "libft/libft.h"
-# include <limits.h>
 
 int	ft_printf(const char *str, ...);
 int	ft_putnbr(int n);
